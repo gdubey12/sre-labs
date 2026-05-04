@@ -1,0 +1,72 @@
+==================================
+ SRE Health Check — linux
+ Mon May  4 07:21:05 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Mon May  4 07:25:05 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Mon May  4 07:31:06 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
