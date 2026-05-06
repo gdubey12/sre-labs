@@ -3421,3 +3421,1263 @@ Issues found:
 ==================================
 [0;32mOverall: HEALTHY[0m
 ==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:00:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:05:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:10:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:15:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 5%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:20:02 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:25:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:30:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:35:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 6%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:40:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 6%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:45:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:50:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 04:55:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 05:00:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 05:05:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 05:10:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 05:15:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 05:20:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:15:04 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:20:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:25:03 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:30:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:35:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:40:02 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:45:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:50:04 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 06:55:02 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:00:02 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:05:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:10:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:15:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:20:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 60% used (7.1G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:25:05 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 61% used (6.9G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:30:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 6%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 61% used (6.9G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 12% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:35:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[1;33m[WARN][0m  LOG WARNINGS: /var/log/syslog has 1 errors in last 100 lines
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[1;33mOverall: DEGRADED[0m
+
+Issues found:
+  - LOG WARNINGS: /var/log/syslog has 1 errors in last 100 lines
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:40:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[1;33m[WARN][0m  LOG WARNINGS: /var/log/syslog has 6 errors in last 100 lines
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[1;33mOverall: DEGRADED[0m
+
+Issues found:
+  - LOG WARNINGS: /var/log/syslog has 6 errors in last 100 lines
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:45:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:50:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 07:55:02 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:00:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:05:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:10:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 6%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:15:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:20:00 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:25:00 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:30:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:35:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:40:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:45:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 7% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.7G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:50:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.6G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 08:55:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.6G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[0;32m[OK][0m    Log /var/log/syslog: no errors
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[0;32mOverall: HEALTHY[0m
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 09:00:01 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 0%
+[0;32m[OK][0m    Memory: 8% used (3.3Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.6G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[1;33m[WARN][0m  LOG WARNINGS: /var/log/syslog has 2 errors in last 100 lines
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[1;33mOverall: DEGRADED[0m
+
+Issues found:
+  - LOG WARNINGS: /var/log/syslog has 2 errors in last 100 lines
+==================================
+==================================
+ SRE Health Check — linux
+ Wed May  6 09:05:03 AM UTC 2026
+==================================
+
+[0;32m[OK][0m    CPU: 3%
+[0;32m[OK][0m    Memory: 9% used (3.2Gi available)
+
+[0;32m[OK][0m    Disk /: 63% used (6.6G free)
+[0;32m[OK][0m    Disk /boot: 15% used (1.6G free)
+[0;32m[OK][0m    Disk /home: 1% used (18G free)
+[0;32m[OK][0m    Inodes /: 13% used
+[0;32m[OK][0m    Inodes /boot: 1% used
+[0;32m[OK][0m    Inodes /home: 1% used
+
+[0;32m[OK][0m    Service ssh: running
+[0;32m[OK][0m    Service docker: running
+
+[1;33m[WARN][0m  LOG WARNINGS: /var/log/syslog has 1 errors in last 100 lines
+[0;32m[OK][0m    Log /home/coolboy/fakelogs/app.log: not found (skipping)
+
+==================================
+[1;33mOverall: DEGRADED[0m
+
+Issues found:
+  - LOG WARNINGS: /var/log/syslog has 1 errors in last 100 lines
+==================================
