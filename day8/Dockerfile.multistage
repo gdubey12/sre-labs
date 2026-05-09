@@ -1,0 +1,33 @@
+# ─── Stage 1: Builder ────────────────────────────────────
+FROM python:3.11-slim AS builder
+
+WORKDIR /build
+
+# Install build dependencies
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir --prefix=/install -r requirements.txt
+
+# ─── Stage 2: Runtime ────────────────────────────────────
+FROM python:3.11-slim AS runtime
+
+WORKDIR /app
+
+# Copy ONLY installed packages from builder stage
+# gcc, apt packages, build tools are LEFT BEHIND
+COPY --from=builder /install /usr/local
+
+# Copy application code
+COPY app.py .
+
+# Security — non-root user
+RUN useradd --system --no-create-home --shell /usr/sbin/nologin appuser
+RUN chown -R appuser:appuser /app
+USER appuser
+
+EXPOSE 5000
+CMD ["python3", "app.py"]

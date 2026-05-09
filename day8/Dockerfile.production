@@ -1,0 +1,29 @@
+# Pin exact base image digest — reproducible builds
+FROM python:3.11-slim@sha256:a5b427ace4900267d93db34138e512325c6fa6af84ad5e4ed5f3b36258cc4142
+
+# Set working directory
+WORKDIR /app
+
+# Copy dependencies first — layer cache optimization
+COPY requirements.txt .
+
+# Install dependencies — no cache to keep image small
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY app.py .
+
+# Create non-root user — security best practice
+RUN useradd --system --no-create-home --shell /usr/sbin/nologin appuser
+
+# Set ownership
+RUN chown -R appuser:appuser /app
+
+# Switch to non-root user
+USER appuser
+
+# Document the port
+EXPOSE 5000
+
+# Run directly as PID 1 — correct signal handling
+CMD ["python3", "app.py"]
