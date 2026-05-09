@@ -68,3 +68,28 @@ LOW      → track, fix when convenient
 [ ] CMD uses array format?
 [ ] Base image pinned to digest?
 [ ] Trivy scan passes with no CRITICAL?
+
+## MULTI-STAGE BUILDS
+Use when: compiled languages (Go, Java, Node) or when build tools
+          should not exist in production image
+
+Pattern:
+  Stage 1 (builder):
+    FROM python:3.11-slim AS builder
+    RUN apt-get install gcc    ← build tools here
+    RUN pip install --prefix=/install -r requirements.txt
+
+  Stage 2 (runtime):
+    FROM python:3.11-slim AS runtime
+    COPY --from=builder /install /usr/local  ← only packages, no gcc
+    USER appuser
+
+--prefix=/install → installs packages into isolated directory
+                    so only packages are copied, not build tools
+COPY --from=builder → copies from previous stage, not host
+
+Benefits:
+  Build tools never reach production
+  Source code can be excluded from final image
+  Smaller attack surface
+  For Go/Java: 800MB → 8MB possible
