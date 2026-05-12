@@ -145,6 +145,21 @@ condition: service_healthy waits for the service inside to actually be ready.
 
 ---
 
+
+### Day 11 — Full Multi-Service Compose App
+Skills: flask + postgres + redis + nginx, full stack compose
+Key labs:
+- Built complete production-like stack from scratch
+- Flask API writing to postgres (durability) and redis (speed)
+- nginx reverse proxy — single entry point, upstream group, timeout config
+- All services health checked — startup order enforced
+- Break lab: redis crash → 500 on /visit, partial write to postgres
+- Recovery: redis restarted, full stack restored automatically
+Key insight: redis is fast and approximate — resets on restart.
+Postgres is permanent truth — survived redis crash with full visit history.
+Partial write problem: postgres wrote, redis failed mid-transaction → data inconsistency.
+
+---
 ## Tools Used
 Linux: ps, top, lsof, strace, df, du, ss, tcpdump, nc, curl
 Networking: iptables, firewalld, nmap
