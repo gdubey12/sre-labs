@@ -159,6 +159,77 @@ Key insight: redis is fast and approximate — resets on restart.
 Postgres is permanent truth — survived redis crash with full visit history.
 Partial write problem: postgres wrote, redis failed mid-transaction → data inconsistency.
 
+
+
+# Day 12 | CI/CD Advanced | Matrix builds (3.10/3.11/3.12), pip caching, tests-complete gate, failure notifications via webhook |
+## Overview
+
+Extended the GitHub Actions CI/CD pipeline with production-grade features:
+matrix builds across Python versions, pip dependency caching, and automated
+failure notifications.
+
+## What Was Built
+
+### Matrix Builds
+Tests run in parallel across Python 3.10, 3.11, and 3.12 simultaneously.
+Catches version-specific compatibility bugs before they reach production.
+
+### Pip Caching
+Dependencies cached using `actions/cache@v4`. Cache key is tied to the OS,
+Python version, and `requirements.txt` hash — cache invalidates automatically
+when dependencies change.
+
+### tests-complete Summary Job
+A lightweight gate job that waits for all matrix versions to pass before
+reporting a single stable status check. Required for branch protection rules
+to work correctly with matrix pipelines.
+
+### Failure Notifications
+`notify-on-failure` job fires automatically when any critical job fails.
+Sends a JSON payload with repo, branch, commit SHA, and direct run URL
+to a webhook endpoint (webhook.site for testing; Slack/PagerDuty in production).
+
+## Pipeline Flow
+
+```
+Matrix: Run Tests (3.10 | 3.11 | 3.12)
+    ├──→ tests-complete          ← PR gate
+    └──→ Build Docker Image
+              └──→ Security Scan (Trivy, CRITICAL CVEs)
+                        └──→ Push to DockerHub (main only)
+
+[any failure] → Notify on Failure → webhook alert
+```
+
+## Key Files
+
+| File | Purpose |
+|---|---|
+| `.github/workflows/ci.yml` | Full pipeline definition |
+| `Dockerfile` | Production image — python:3.11-slim |
+| `test_app.py` | pytest tests — verified on 3 Python versions |
+| `requirements.txt` | pip cache key source |
+
+## Break Labs Completed
+
+| Lab | What broke | What fired |
+|---|---|---|
+| Intentional test failure | All 3 matrix jobs failed | notify-on-failure → webhook.site |
+
+## DockerHub
+
+Image: `gaurav0524/sre-cicd-app`
+- Tagged with commit SHA for traceability
+- `latest` tag updated on every main push
+- Verified with `docker pull` + `curl /health` on local VM
+
+## Lessons Learned
+
+- Matrix builds change job names — always use a summary job as PR gate
+- Cache step must come BEFORE install dependencies to be useful
+- `if: failure()` is edge-triggered — only fires when something actually broke
+- `github.sha` tagging gives full rollback capability; `latest` does not
+
 ---
 ## Tools Used
 Linux: ps, top, lsof, strace, df, du, ss, tcpdump, nc, curl
