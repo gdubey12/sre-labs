@@ -230,6 +230,17 @@ Image: `gaurav0524/sre-cicd-app`
 - `if: failure()` is edge-triggered — only fires when something actually broke
 - `github.sha` tagging gives full rollback capability; `latest` does not
 
+### Day 13 — Monitoring Basics
+- journalctl: system log filtering by service, time window, boot boundary
+- docker compose logs: follow mode, time window filtering
+- docker stats: live CPU/MEM/NET — mapped to counter vs gauge metric types
+- Docker bridge networking: br-* interfaces, veth pairs, gateway IP
+- Runbook: [monitoring-basics.md](labs/day13/runbooks/monitoring-basics.md)
+
+
+
+
+
 ---
 ## Tools Used
 Linux: ps, top, lsof, strace, df, du, ss, tcpdump, nc, curl
