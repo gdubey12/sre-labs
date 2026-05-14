@@ -240,6 +240,53 @@ Image: `gaurav0524/sre-cicd-app`
 
 
 
+# README.md — Day 15 Addition
+
+Add the following entry under your Week 3 section (create the section if it doesn't exist yet):
+
+---
+
+## Week 3 — Infrastructure as Code + Kubernetes (Days 15–21)
+
+### Day 15 — Terraform Basics ✅
+
+**Topics covered:**
+- Terraform install and provider configuration
+- Core workflow: `init` → `plan` → `apply` → `destroy`
+- Variables (`variables.tf`) and value overrides (`terraform.tfvars`)
+- Outputs (`outputs.tf`) — surfacing resource attributes post-apply
+- State file (`terraform.tfstate`) — Terraform's memory and drift detection
+- Variable precedence: default → tfvars → env var → `-var` flag
+
+**Lab:**
+- Provisioned a `local_file` resource using the HashiCorp local provider
+- Demonstrated config drift detection by manually editing a managed file
+- Used `terraform output` to query resource attributes
+- Full destroy and state cleanup
+
+**Key insight:**
+> Terraform detects drift by comparing the state file against real infrastructure on every `plan`/`apply`. If someone changes infrastructure outside of Terraform, the next plan exposes it. The code is the source of truth, not the server.
+
+**Files:**
+- `labs/day15-terraform/main.tf`
+- `labs/day15-terraform/variables.tf`
+- `labs/day15-terraform/outputs.tf`
+- `labs/day15-terraform/terraform.tfvars`
+
+**Runbook:** `reference/day15-terraform-runbook.md`
+
+---
+
+## Upcoming
+
+| Day | Topic |
+|---|---|
+| 16 | Terraform — modules and multiple resources |
+| 17 | Terraform — remote state |
+| 18–21 | Kubernetes intro |
+| 50+ | Terraform + LocalStack (simulated AWS) |
+
+
 
 ---
 ## Tools Used
