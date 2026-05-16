@@ -288,6 +288,51 @@ Add the following entry under your Week 3 section (create the section if it does
 
 
 
+# README.md — Day 16 Addition
+
+Add the following entry under Week 3:
+
+---
+
+### Day 16 — Terraform Modules & Multiple Resources ✅
+
+**Topics covered:**
+- Multiple resources with implicit and explicit dependencies (`depends_on`)
+- Terraform dependency graph — parallel vs sequential resource creation
+- Resource interpolation — referencing attributes across resources
+- Modules — reusable resource templates with inputs and outputs
+- Module state addressing: `module.<name>.<type>.<name>`
+- Passing module outputs to other modules
+- When `terraform init` is required (any new module block)
+
+**Lab:**
+- Created 3 resources with dependency chain (app → db → summary)
+- Built a reusable `config-file` module with variables and outputs
+- Called the same module 3 times with different inputs (app, db, cache configs)
+- Demonstrated module output flow — individual outputs collected into root output map
+- Learned refactoring risk: moving resources into modules changes state address
+
+**Key insight:**
+> A module is just a folder with `.tf` files. Modules protect you from changes in the logic — update the module once, all callers benefit. Module outputs wire infrastructure together: an app module can receive a database host from a database module's output automatically, with no hardcoding.
+
+**Files:**
+- `labs/day16-terraform/main.tf`
+- `labs/day16-terraform/modules/config-file/main.tf`
+- `labs/day16-terraform/config/app.conf`
+- `labs/day16-terraform/config/db.conf`
+- `labs/day16-terraform/config/cache.conf`
+
+**Runbook:** `reference/day16-terraform-runbook.md`
+
+---
+
+## Upcoming
+
+| Day | Topic |
+|---|---|
+| 17 | Terraform — remote state |
+| 18–21 | Kubernetes intro |
+| 50+ | Terraform + LocalStack + AWS free tier |
 ---
 ## Tools Used
 Linux: ps, top, lsof, strace, df, du, ss, tcpdump, nc, curl
