@@ -364,6 +364,38 @@ Add the following entry under Week 3:
 - `labs/day17-terraform/main.tf`
 - `labs/day17-terraform/runbook.md`
 
+
+# Day 19 — Pods, Deployments, Services
+
+## What was covered
+First hands-on Kubernetes session. Moved from concepts to running real workloads.
+
+## Files
+| File | Description |
+|---|---|
+| `pod.yaml` | Standalone nginx pod |
+| `deployment.yaml` | 3-replica nginx Deployment |
+| `service.yaml` | ClusterIP Service routing to Deployment pods |
+| `NOTES.md` | Concepts and commands learned |
+| `RUNBOOK.md` | Common operational scenarios and fixes |
+
+## Key outcomes
+- Deployed a standalone Pod and exec'd into it
+- Observed reconciliation loop live — deleted pod replaced in 7 seconds
+- Created a Service and verified pod-to-pod routing via DNS name
+- Scaled Deployment up to 5 and down to 2
+- Checked rollout status and history
+
+## Commands reference
+```bash
+kubectl get pods -w                          # watch pods in real time
+kubectl describe pod <name>                  # full detail + events
+kubectl exec -it <pod> -- sh                 # shell into pod
+kubectl scale deployment <name> --replicas=N # scale
+kubectl rollout status deployment <name>     # verify rollout
+kubectl rollout history deployment <name>    # revision history
+```
+
 ## Tools Used
 Linux: ps, top, lsof, strace, df, du, ss, tcpdump, nc, curl
 Networking: iptables, firewalld, nmap
