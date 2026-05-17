@@ -326,6 +326,8 @@ Add the following entry under Week 3:
 
 ---
 
+
+
 ## Upcoming
 
 | Day | Topic |
@@ -334,6 +336,34 @@ Add the following entry under Week 3:
 | 18–21 | Kubernetes intro |
 | 50+ | Terraform + LocalStack + AWS free tier |
 ---
+
+### Day 17 — Terraform Remote State ✅
+
+**Topics covered:**
+- State file internals: version, serial, lineage, resource records
+- Why local state is dangerous: no locking, no sharing, single point of failure
+- GitLab HTTP backend — remote state without AWS
+- State locking: acquired before plan/apply, released after
+- Drift detection: SHA1 hash mismatch triggers + create on next plan
+- terraform state list / show — reading state without raw JSON
+
+**Lab:**
+- Inspected Day 16 state file — read serial, lineage, resource hashes
+- Created GitLab project + personal access token for backend auth
+- Configured HTTP backend in backend.tf — credentials passed via init flags
+- Verified state stored in GitLab: Operate → Terraform states → day17-state
+- Confirmed no terraform.tfstate file locally after apply
+- Simulated drift: manually edited managed file, plan detected mismatch
+- Restored correct state with apply
+
+**Key insight:**
+> Remote state is not optional in team environments. Serial prevents concurrent conflicts. Locking prevents simultaneous applies. GitLab is production-grade remote state without any cloud cost — the same pattern used before AWS S3 is introduced.
+
+**Files:**
+- `labs/day17-terraform/backend.tf`
+- `labs/day17-terraform/main.tf`
+- `labs/day17-terraform/runbook.md`
+
 ## Tools Used
 Linux: ps, top, lsof, strace, df, du, ss, tcpdump, nc, curl
 Networking: iptables, firewalld, nmap
