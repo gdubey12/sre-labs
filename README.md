@@ -396,6 +396,12 @@ kubectl rollout status deployment <name>     # verify rollout
 kubectl rollout history deployment <name>    # revision history
 ```
 
+## Day 20 — ConfigMaps, Secrets, NodePort, Rolling Updates
+- ConfigMap and Secret injection as env vars
+- NodePort service type and port-forward for local access
+- Rolling update — zero downtime deployment observed live
+- Rollback using revision history
+
 ## Tools Used
 Linux: ps, top, lsof, strace, df, du, ss, tcpdump, nc, curl
 Networking: iptables, firewalld, nmap
