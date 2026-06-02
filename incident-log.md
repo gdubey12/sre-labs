@@ -84,3 +84,16 @@ When debugging blocked pod→Service traffic, filter on **ClusterIP not pod IP**
 ---
 
 
+
+## INC-003 — db Pod Had Unrestricted Egress
+**Date:** Day 20  
+**Namespace:** staging  
+**Pod affected:** db (role=db)
+
+**Problem:** allow-backend-to-db only had Ingress in policyTypes so db could send traffic to anyone outbound.
+
+**Cause:** Egress policyType was missing — Kubernetes defaults to allow all egress when Egress is not listed in policyTypes.
+
+**Fix:** Added Egress to policyTypes in allow-backend-to-db. No egress rules needed — empty Egress = deny all.
+
+**Proof:** curl from db to example.com returned exit code 28. tcpdump showed DNS query leaving db veth but no reply — egress blocked at Calico.
