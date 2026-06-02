@@ -97,3 +97,23 @@ When debugging blocked pod→Service traffic, filter on **ClusterIP not pod IP**
 **Fix:** Added Egress to policyTypes in allow-backend-to-db. No egress rules needed — empty Egress = deny all.
 
 **Proof:** curl from db to example.com returned exit code 28. tcpdump showed DNS query leaving db veth but no reply — egress blocked at Calico.
+
+## INC-004 — NetworkPolicy Port Mismatch (Service Port vs Pod Port)
+**Date:** Day 20
+**Namespace:** prod
+**Pod affected:** web (role=web)
+
+**Problem:** web → app-svc:8080 timed out (exit code 28) even though egress policy
+looked correct and labels matched.
+
+**Cause:** NetworkPolicy egress rule had port 8080 (Service port). But Calico
+evaluates policy against the actual pod port AFTER kube-proxy DNAT. app pod
+listens on port 80, not 8080. So Calico found no matching egress rule and dropped.
+
+**Fix:** Changed egress port from 8080 to 80 (the pod's actual listening port).
+
+**Proof:** curl to pod IP direct on port 80 worked. curl via service on 8080 worked
+after fix. exit code 0.
+
+**Lesson:** In NetworkPolicy always use the pod's listening port, not the Service
+port. Service port mapping is irrelevant to policy evaluation.
