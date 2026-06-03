@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: path-ingress
+  namespace: ingress-lab
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /   # strip the path before forwarding to backend
+spec:
+  ingressClassName: nginx                            # use the nginx controller we installed
+  rules:
+  - host: myapp.local                               # hostname to match
+    http:
+      paths:
+      - path: /app1                                 # requests to /app1 go to app1-svc
+        pathType: Prefix
+        backend:
+          service:
+            name: app1-svc
+            port:
+              number: 80
+      - path: /app2                                 # requests to /app2 go to app2-svc
+        pathType: Prefix
+        backend:
+          service:
+            name: app2-svc
+            port:
+              number: 80

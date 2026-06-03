@@ -1,0 +1,73 @@
+# App1 - Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1
+  namespace: ingress-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+      - name: app1
+        image: hashicorp/http-echo:latest
+        args:
+          - "-text=Hello from App1"   # this is what the app responds with
+        ports:
+        - containerPort: 5678
+---
+# App1 - Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-svc
+  namespace: ingress-lab
+spec:
+  selector:
+    app: app1
+  ports:
+  - port: 80
+    targetPort: 5678   # container listens on 5678, service exposes as 80
+---
+# App2 - Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app2
+  namespace: ingress-lab
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app2
+  template:
+    metadata:
+      labels:
+        app: app2
+    spec:
+      containers:
+      - name: app2
+        image: hashicorp/http-echo:latest
+        args:
+          - "-text=Hello from App2"
+        ports:
+        - containerPort: 5678
+---
+# App2 - Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: app2-svc
+  namespace: ingress-lab
+spec:
+  selector:
+    app: app2
+  ports:
+  - port: 80
+    targetPort: 5678
