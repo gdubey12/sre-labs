@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-config
+  namespace: guestbook
+data:
+  nginx.conf: |
+    server {
+      listen 80;
+      location / {
+        root /usr/share/nginx/html;
+        index index.html;
+      }
+      location /entries {
+        proxy_pass http://backend:8080;
+      }
+    }
+  index.html: |
+    <html>
+      <body>
+        <h1>SRE Guestbook</h1>
+        <p>Backend entries at /entries</p>
+      </body>
+    </html>

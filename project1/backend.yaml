@@ -1,0 +1,52 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: guestbook
+spec:
+  clusterIP: None        # headless — stable DNS per pod
+  selector:
+    app: backend
+  ports:
+    - port: 8080
+      name: backend
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: backend
+  namespace: guestbook
+spec:
+  serviceName: backend         # must match headless Service name
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      serviceAccountName: backend-sa    # use our dedicated SA
+      containers:
+        - name: backend
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              mkdir -p /data/entries
+              echo "backend-master-1 started at Wed Jun  3 09:13:03 AM UTC 2026" > /data/entries/log.txt
+              httpd -f -p 8080 -h /data    # busybox httpd serves /data on 8080
+          volumeMounts:
+            - name: data
+              mountPath: /data
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 256Mi

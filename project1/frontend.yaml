@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: guestbook
+spec:
+  type: NodePort          # expose outside the cluster for testing
+  selector:
+    app: frontend
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080     # access via worker-1 IP on this port
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: guestbook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-config    # mount nginx.conf
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: nginx.conf   # only mount this key, not entire ConfigMap
+            - name: nginx-config    # mount index.html
+              mountPath: /usr/share/nginx/html/index.html
+              subPath: index.html
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: frontend-config   # our ConfigMap from Step 3
