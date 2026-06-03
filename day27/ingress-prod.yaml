@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prod-ingress
+  namespace: prod                    # same namespace as app-svc
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: prod.local                 # hostname for prod app
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: app-svc            # must exist in prod namespace
+            port:
+              number: 8080           # match exactly what the service exposes

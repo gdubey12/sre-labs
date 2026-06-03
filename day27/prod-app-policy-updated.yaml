@@ -1,0 +1,38 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: prod-app-policy
+  namespace: prod
+spec:
+  podSelector:
+    matchLabels:
+      role: app
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - podSelector:                    # existing rule — allow from web pod
+        matchLabels:
+          role: web
+  - from:
+    - namespaceSelector:              # new rule — allow from ingress-nginx namespace
+        matchLabels:
+          kubernetes.io/metadata.name: ingress-nginx
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: kube-system
+    ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+  - to:
+    - podSelector:
+        matchLabels:
+          role: db
+    ports:
+    - port: 5432
+      protocol: TCP

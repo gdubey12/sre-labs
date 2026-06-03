@@ -117,3 +117,66 @@ after fix. exit code 0.
 
 **Lesson:** In NetworkPolicy always use the pod's listening port, not the Service
 port. Service port mapping is irrelevant to policy evaluation.
+# INCIDENT-001 — 504 Gateway Timeout on prod-ingress
+
+## Date
+2026-06-03
+
+## Severity
+Medium
+
+## Summary
+Ingress routing to prod namespace returned 504 Gateway Timeout
+after prod-ingress resource was created and host entry added.
+
+## Timeline
+14:00  Created prod-ingress resource pointing to app-svc:8080
+14:02  Added prod.local to /etc/hosts
+14:03  curl http://prod.local:30556 → 504 Gateway Timeout
+
+## Investigation Steps
+
+### Step 1 — Is the pod running?
+kubectl get pods -n prod
+→ app pod Running ✅
+
+### Step 2 — Is the service wired correctly?
+kubectl describe svc app-svc -n prod
+→ Port: 8080, TargetPort: 80, Endpoint: 10.200.226.113:80 ✅
+
+### Step 3 — Does the pod serve traffic directly?
+kubectl exec -n prod app -- wget -qO- http://localhost:80
+→ nginx default page returned ✅
+→ Conclusion: problem is between ingress controller and pod, not the pod itself
+
+### Step 4 — Check NetworkPolicy
+kubectl get networkpolicy -n prod
+→ prod-app-policy exists on role=app pods
+
+kubectl describe networkpolicy prod-app-policy -n prod
+→ Ingress only allowed from podSelector: role=web
+→ ingress-nginx controller has no such label ❌
+→ ROOT CAUSE IDENTIFIED
+
+## Root Cause
+NetworkPolicy prod-app-policy restricted ingress to app pod
+from pods with label role=web only. The nginx-ingress controller
+pod in ingress-nginx namespace had no matching label, so all
+traffic from the controller was silently dropped — causing timeout.
+
+## Fix
+Added a second ingress rule to prod-app-policy allowing traffic
+from namespaceSelector: kubernetes.io/metadata.name=ingress-nginx
+
+kubectl apply -f ~/labs/day27/prod-app-policy-updated.yaml
+
+## Verification
+curl http://prod.local:30556
+→ nginx welcome page returned ✅
+
+## Lesson Learned
+When Ingress returns 504 but pod is healthy:
+1. Always check NetworkPolicy first
+2. Ingress controller runs in ingress-nginx namespace
+3. NetworkPolicy must explicitly allow ingress-nginx namespace
+   or the controller traffic will be blocked silently
