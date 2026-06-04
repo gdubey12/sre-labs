@@ -1,0 +1,32 @@
+# ServiceAccount — pod identity
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cicd-sa
+  namespace: dev
+---
+# Role — list and update deployments only
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: deployment-manager
+  namespace: dev
+rules:
+- apiGroups: ["apps"]              # deployments live in apps group
+  resources: ["deployments"]
+  verbs: ["get", "list", "update", "patch"]
+---
+# RoleBinding — connect SA to Role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cicd-binding
+  namespace: dev
+subjects:
+- kind: ServiceAccount
+  name: cicd-sa
+  namespace: dev
+roleRef:
+  kind: Role
+  name: deployment-manager
+  apiGroup: rbac.authorization.k8s.io
