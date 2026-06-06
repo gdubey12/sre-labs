@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bust-pod-1
+  namespace: resourcelab
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bust-pod-2
+  namespace: resourcelab
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: auto-limits-pod
+  namespace: resourcelab
+spec:
+  containers:
+  - name: nginx
+    image: nginx:alpine
