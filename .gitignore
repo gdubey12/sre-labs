@@ -3,3 +3,4 @@ terraform.tfstate
 terraform.tfstate.backup
 day12/sre-cicd-app
 *.key
+*.tgz
