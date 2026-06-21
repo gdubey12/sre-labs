@@ -1,0 +1,407 @@
+# Day 38 — Helm Chart Dependencies + Hooks
+
+## Part 1: Chart Dependencies
+
+### The concept
+
+A chart can declare other charts as dependencies (subcharts). Instead of writing
+Redis manifests yourself, you declare Redis as a dependency and Helm pulls,
+manages, and renders it alongside your own templates as ONE release.
+
+```
+Your chart needs Redis
+        ↓
+Option A: write Redis YAML yourself     → brittle, lots of work
+Option B: declare as dependency         → Helm pulls + manages it for you
+```
+
+---
+
+### Declaring a dependency — Chart.yaml
+
+```yaml
+dependencies:
+  - name: redis
+    version: "27.0.4"
+    repository: "https://charts.bitnami.com/bitnami"
+    condition: redis.enabled
+```
+
+| Field | Meaning |
+|-------|---------|
+| `name` | Name of the dependency chart |
+| `version` | Exact or semver-range version to pull |
+| `repository` | Repo URL — must already be added via `helm repo add` |
+| `condition` | Path in values.yaml that toggles this dependency on/off |
+
+The `repository` field is where Helm actually fetches from — same mechanism as
+`helm install bitnami/nginx`. Could also be an OCI registry or local path
+(`file://../other-chart`) for local development.
+
+---
+
+### Pulling the dependency
+
+```bash
+helm dependency update
+```
+
+What this does:
+```
+1. Reads repository URL from Chart.yaml
+2. Downloads the chart .tgz from that repo
+3. Saves it into mychart/charts/redis-27.0.4.tgz
+4. Generates/updates Chart.lock with exact resolved version + digest
+```
+
+Resulting structure:
+```
+myapp/
+├── Chart.yaml
+├── Chart.lock           ← generated, pins exact versions (like package-lock.json)
+├── values.yaml
+├── charts/
+│   └── redis-27.0.4.tgz  ← downloaded dependency
+└── templates/
+```
+
+### Chart.lock contents
+```yaml
+dependencies:
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 27.0.4
+digest: sha256:f85082db...
+generated: "2026-06-18T..."
+```
+The digest is a hash of the full dependency tree state. Running
+`helm dependency update` again with an unchanged Chart.yaml skips
+re-downloading if the digest matches.
+
+### update vs build
+| Command | Behavior |
+|---------|----------|
+| `helm dependency update` | Re-resolves from Chart.yaml, regenerates Chart.lock, re-downloads |
+| `helm dependency build` | Uses existing Chart.lock to download exact pinned versions — use in CI/CD for reproducibility |
+
+---
+
+### Subchart value namespacing
+
+Any values placed under a top-level key matching the dependency name in your
+parent `values.yaml` get passed down into that subchart automatically.
+
+```yaml
+# values.yaml (parent chart)
+redis:
+  enabled: true       # satisfies the `condition: redis.enabled` field
+  auth:
+    enabled: false    # passed into the Redis subchart's own auth.enabled value
+```
+
+Override at install/template time the same way:
+```bash
+helm template myapp . --set redis.architecture=standalone
+```
+
+This flips Redis from master/replica topology to a single standalone instance —
+zero template editing required, because the chart author exposed `architecture`
+as a values knob.
+
+---
+
+### Verifying what a dependency adds
+
+```bash
+helm template myapp . | grep -A2 "^kind:"
+```
+
+Example result — one install creates resources from BOTH your chart and the
+Redis subchart:
+```
+YOUR templates:        ServiceAccount, Service, Deployment, Pod (test hook)
+REDIS subchart adds:   PodDisruptionBudget x2, ServiceAccount x2, ConfigMap x3,
+                       Service x3, StatefulSet x2 (master + replicas), NetworkPolicy
+```
+
+Naming convention: subchart resources get prefixed `myapp-redis-*` — the
+`fullname` helper pattern applied automatically to avoid name collisions if you
+install two release instances side by side.
+
+Note: Redis uses **StatefulSet**, not Deployment — it needs stable network
+identity and persistent storage per replica, unlike stateless app pods.
+
+---
+
+## Part 2: Helm Hooks
+
+### The concept
+
+A hook runs a Kubernetes resource (usually a `Job` or `Pod`) at a specific point
+in the release lifecycle, outside the normal install/upgrade flow.
+
+Use cases: DB migrations before install, smoke tests after install, backup jobs
+before delete, cleanup after upgrade.
+
+### Where hooks live
+
+**Hooks are not special files in a special location.** They are normal
+manifests sitting in `templates/`, identified purely by an annotation:
+
+```yaml
+metadata:
+  annotations:
+    "helm.sh/hook": pre-install
+```
+
+Helm renders everything in `templates/`, checks each object for this
+annotation, and pulls out anything that has it to run at the right lifecycle
+point instead of including it in the normal release.
+
+```
+Render all templates/*.yaml
+        ↓
+Check annotations on each rendered object
+        ↓
+Has "helm.sh/hook"?  → YES → schedule at the right lifecycle point
+                     → NO  → include in normal release manifest
+```
+
+`templates/tests/test-connection.yaml` (generated by `helm create`) is itself a
+hook — annotated `"helm.sh/hook": test`. Same exact mechanism.
+
+---
+
+### Available hook points
+
+| Hook | Fires when |
+|------|-----------|
+| `pre-install` | Before templates are installed |
+| `post-install` | After all resources are installed |
+| `pre-upgrade` | Before templates are upgraded |
+| `post-upgrade` | After all resources are upgraded |
+| `pre-delete` | Before any resources are deleted |
+| `post-delete` | After all resources are deleted |
+| `pre-rollback` | Before rollback |
+| `post-rollback` | After rollback |
+| `test` | On `helm test` |
+
+---
+
+### Hook annotations used in lab
+
+```yaml
+annotations:
+  "helm.sh/hook": pre-install
+  "helm.sh/hook-weight": "0"
+  "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+```
+
+| Annotation | Meaning |
+|-----------|---------|
+| `helm.sh/hook` | Which lifecycle point triggers this resource |
+| `helm.sh/hook-weight` | Execution order when multiple hooks share a lifecycle point — lower runs first, can be negative |
+| `helm.sh/hook-delete-policy` | Cleanup behavior — comma-separated list |
+
+### Delete policy values
+- `before-hook-creation` — delete any previous hook resource from a prior
+  release before creating a new one (prevents "already exists" errors on
+  `helm upgrade`)
+- `hook-succeeded` — delete this resource after it completes successfully
+- `hook-failed` — delete even on failure
+- Omit entirely to keep the resource around for debugging
+
+---
+
+### Lab hook used
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "myapp.fullname" . }}-pre-install-check
+  labels:
+    {{- include "myapp.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": pre-install
+    "helm.sh/hook-weight": "0"
+    "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
+spec:
+  template:
+    metadata:
+      name: {{ include "myapp.fullname" . }}-pre-install-check
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: pre-install-check
+          image: busybox
+          command: ["sh", "-c", "echo 'Pre-install check: verifying environment...'; sleep 2; echo 'Environment OK, proceeding with install'"]
+```
+
+### Verifying a hook fired (since hook-succeeded deletes the Job)
+
+The Job disappears after success — `kubectl get jobs` shows nothing. Confirm
+via events instead:
+
+```bash
+kubectl get events -n <namespace> --sort-by='.lastTimestamp' | grep -i pre-install
+```
+
+Expected sequence:
+```
+SuccessfulCreate → Scheduled → Pulling → Pulled → Created container → Started → Job completed
+```
+
+---
+
+## Key Commands Summary
+
+```bash
+# Dependencies
+helm dependency update          # resolve + download + regenerate Chart.lock
+helm dependency build           # download per existing Chart.lock (CI/CD)
+helm search repo bitnami/redis  # find exact chart version before pinning
+
+# Inspect rendered output including hooks
+helm template myapp . | grep -A2 "^kind:"
+
+# Package chart (bundles charts/ dependencies into one .tgz)
+helm package .
+
+# Install from packaged tgz instead of directory
+helm install myapp myapp-0.1.0.tgz --namespace <ns> [--set ...]
+```
+
+---
+
+## Incidents Debugged Today
+
+### INC — Clock drift on worker-1 breaking Calico CNI auth
+
+**Symptom:** Pods stuck indefinitely in `ContainerCreating` /
+`Init:CreateContainerConfigError`. `crictl ps -a` showed no container created
+at all. Kubelet logs repeated:
+```
+error getting ClusterInformation: connection is unauthorized: Unauthorized
+```
+
+**Root cause:** worker-1's system clock had drifted ~4 days behind master-1
+(worker-1: Jun 14, master-1: Jun 18 UTC). Kubernetes service account tokens are
+time-bound (JWT `iat`/`exp` claims) — a sufficiently stale clock makes valid
+tokens appear invalid to the API server, breaking Calico's ability to fetch
+`ClusterInformation` at sandbox-creation time.
+
+**Diagnosis path:**
+```bash
+date                                          # compare clocks on both nodes
+chronyc sources -v                            # check NTP reachability
+chronyc tracking                              # confirm sync status
+```
+
+**Fix:**
+```bash
+sudo chronyc makestep        # force immediate step correction (don't wait for gradual slew)
+sudo systemctl restart chronyd
+date -u                      # verify UTC matches across nodes
+```
+
+**Note:** first `makestep` attempt appeared to not work because `date` was
+read in local IST timezone and misread as still wrong — always cross-check
+with `date -u` for unambiguous comparison across nodes in different timezones.
+
+**Follow-up:** stuck pods/namespaces left over from the drift period needed
+manual force-cleanup since their network sandboxes were unrecoverable:
+```bash
+kubectl delete pod <name> -n <ns> --force --grace-period=0
+kubectl delete namespace <ns> --ignore-not-found
+```
+
+---
+
+### INC — Bitnami repo index exceeds Helm's 5MB file size limit
+
+**Symptom:**
+```
+Error: INSTALLATION FAILED: chart file "bitnami-index.yaml" is larger than the maximum file size 5242880
+```
+Occurred on `helm install` when installing a chart directory with a Bitnami
+subchart dependency declared in `Chart.yaml`.
+
+**Root cause:** Bitnami's repo index file (`~/.cache/helm/repository/bitnami-index.yaml`)
+has grown to ~27MB (metadata for hundreds of charts × many historical
+versions). Helm enforces a hard 5MB limit on chart-related file reads during
+certain install-time operations. Clearing the cache and re-running
+`helm repo update` did not reduce the size — this is the genuine current size
+of the upstream index, not a local cache corruption issue.
+
+**Diagnosis path:**
+```bash
+du -sh ~/.cache/helm/repository/bitnami-index.yaml   # confirmed ~27MB, consistent across re-pulls
+helm env | grep -i cache                              # confirmed cache path
+```
+
+**Workaround — package and install from .tgz instead of directory:**
+```bash
+helm package .                  # bundles chart + vendored charts/ deps into one .tgz
+helm install myapp myapp-0.1.0.tgz --namespace <ns> [--set ...]
+```
+Installing from the packaged archive uses only the already-vendored
+`charts/redis-27.0.4.tgz` and avoids re-touching the live Bitnami index during
+install — sidesteps the size-limit check entirely.
+
+**Takeaway:** for any chart with Bitnami (or other large-index) dependencies,
+prefer `helm package` + install-from-tgz in CI/CD pipelines rather than
+installing directly from a chart directory, purely for reliability against
+this kind of upstream index bloat.
+
+---
+
+### INC — StatefulSet volumeClaimTemplates is immutable
+
+**Symptom:**
+```
+Error: UPGRADE FAILED: cannot patch "myapp-redis-master" with kind StatefulSet:
+StatefulSet.apps "myapp-redis-master" is invalid: spec: Forbidden: updates to
+statefulset spec for fields other than 'replicas', 'ordinals', 'template',
+'updateStrategy', 'persistentVolumeClaimRetentionPolicy' and 'minReadySeconds'
+are forbidden
+```
+Triggered when attempting `helm upgrade` with
+`--set redis.master.persistence.enabled=false` on an already-deployed Redis
+StatefulSet.
+
+**Root cause:** `volumeClaimTemplates` (and several other StatefulSet spec
+fields) are immutable after creation by Kubernetes API server design — Helm's
+patch-based upgrade cannot change them in place.
+
+**Fix:** full uninstall + reinstall, not upgrade, when changing
+StatefulSet-defining fields:
+```bash
+helm uninstall myapp -n <ns>
+kubectl delete pvc -n <ns> --all
+kubectl delete namespace <ns> --ignore-not-found
+kubectl create namespace <ns>
+helm install myapp myapp-0.1.0.tgz --namespace <ns> --set redis.master.persistence.enabled=false
+```
+
+**Related — no storage provisioner in this cluster:**
+```bash
+kubectl get storageclass    # → No resources found
+```
+Hard-way lab cluster has no dynamic volume provisioner, so any PVC stays
+`Pending` forever. For lab/demo purposes, disable persistence on the
+dependency (`redis.master.persistence.enabled=false`) rather than provisioning
+real storage.
+
+---
+
+## Cleanup
+
+```bash
+helm uninstall myapp -n day38-demo
+kubectl delete namespace day38-demo
+```
+
+---
+
+## Next: Day 39 — Write your own chart from scratch
