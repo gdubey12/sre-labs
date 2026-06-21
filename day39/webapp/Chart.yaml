@@ -1,0 +1,6 @@
+apiVersion: v2
+name: webapp
+description: A custom Helm chart for an nginx-based web app with ConfigMap-driven config
+type: application
+version: 0.1.0
+appVersion: "1.25.0"

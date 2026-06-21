@@ -1,0 +1,25 @@
+replicaCount: 1
+
+image:
+  repository: nginx
+  tag: "1.25.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+# Custom application config — gets mounted via ConfigMap
+appConfig:
+  environment: "dev"
+  logLevel: "info"
+  maxConnections: 100
+
+nameOverride: ""
+fullnameOverride: ""
+
+resources: {}
+
+nodeSelector: {}
+tolerations: []
+affinity: {}
