@@ -1,0 +1,31 @@
+frontend:
+  replicaCount: 1
+  image:
+    repository: nginx
+    tag: "1.25.0"
+    pullPolicy: IfNotPresent
+  service:
+    type: NodePort
+    port: 80
+
+backend:
+  replicaCount: 1
+  image:
+    repository: kennethreitz/httpbin
+    tag: "latest"
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 80
+
+redis:
+  enabled: true
+  architecture: standalone
+  auth:
+    enabled: false
+  master:
+    persistence:
+      enabled: false
+
+nameOverride: ""
+fullnameOverride: ""
