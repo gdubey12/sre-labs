@@ -4,7 +4,7 @@ metadata:
   name: day41-nginx
   namespace: day41-demo
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: day41-nginx
