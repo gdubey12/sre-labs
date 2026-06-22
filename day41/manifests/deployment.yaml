@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day41-nginx
+  namespace: day41-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: day41-nginx
+  template:
+    metadata:
+      labels:
+        app: day41-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25.0
+        ports:
+        - containerPort: 80
