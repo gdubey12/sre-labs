@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: day42
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+data:
+  MESSAGE: "hello from day42"

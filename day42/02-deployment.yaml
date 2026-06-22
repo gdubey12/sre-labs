@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: day42-app
+  namespace: day42
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: day42-app
+  template:
+    metadata:
+      labels:
+        app: day42-app
+    spec:
+      containers:
+      - name: app
+        image: nginxdemos/hello
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: app-config

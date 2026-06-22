@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: day42-healthcheck
+  namespace: day42
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: healthcheck
+        image: curlimages/curl
+        command: ["curl", "-f", "http://day42-app.day42.svc.cluster.local:80"]
