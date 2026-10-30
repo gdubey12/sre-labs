@@ -1,420 +1,180 @@
 # SRE Learning Labs
-Hands-on DevOps/SRE practice labs — 90 days of real break/fix scenarios.
-Built while transitioning from 14+ years of product support to SRE engineering.
 
-## Philosophy
-No theory without hands-on. Every concept is learned by breaking something
-and investigating it — exactly like real on-call work.
+Hands-on Linux, Docker, CI/CD and Kubernetes labs focused on infrastructure operations, troubleshooting, automation and reliability engineering.
 
-## Lab Structure
-Each day contains:
-- NOTES.md    — theory and concepts explained plainly
-- runbooks/   — written after investigating and fixing
+This repository documents practical work completed during a planned 90-day SRE learning journey. The original day numbering is retained to preserve the learning history; it does not imply that every day of the programme was completed.
 
-## Reference Materials
-- reference/syscall-reference.md — syscall numbers for incident investigation
+## Learning Approach
 
----
+The focus is on practical exercises rather than theory alone:
 
-## Labs Completed
+- Build and configure infrastructure components.
+- Introduce controlled failures and investigate symptoms.
+- Troubleshoot using Linux commands, logs and network tools.
+- Document findings, recovery steps and operational lessons.
+- Maintain reusable notes and runbooks.
 
-### Day 1 — Process Investigation
-Skills: ps, /proc, lsof, strace, kill signals
-Key labs:
-- CPU spin loop detection — found rogue process using /proc/syscall
-- Zombie process investigation — why kill -9 fails, how to fix it
-- DB wait simulation — recvfrom() signature, TCP socket investigation
-Key insight: /proc/PID/syscall showing "running" = pure CPU spin.
-Syscall 45 recvfrom + TCP to port 5432 = app waiting on DB, not broken.
+## Technical Areas
 
----
+### 1. Linux Administration and Troubleshooting
 
-### Day 2 — Disk Triage
-Skills: df, du, lsof, truncate, inode management
-Key labs:
-- Disk full recovery — filled /home to 100%, recovered without reboot
-- Deleted file trick — file deleted but space not freed, found with lsof
-- Inode exhaustion — 1.2M files consumed all inodes with only 87MB disk used
-Key insight: df -h showing free space does NOT mean writes will succeed.
-Always run df -i separately. Two different limits, same error message.
+Hands-on exercises include:
 
----
+- Process investigation using `ps`, `/proc`, `lsof` and `strace`.
+- CPU-intensive and zombie process investigation.
+- Disk capacity and inode exhaustion troubleshooting.
+- Deleted-but-open file investigation.
+- TCP connectivity and firewall troubleshooting.
+- Bash health-check scripts, cron scheduling and webhook notifications.
+- systemd service management, restart policies and cgroup memory limits.
 
-### Day 3 — Network Debugging
-Skills: curl, tcpdump, iptables, firewalld, ss, nc
-Key labs:
-- Connection refused vs timeout — instant vs slow failure, different causes
-- Local firewall DROP — OUTPUT chain, tcpdump shows nothing
-- Remote firewall DROP — SYN goes out, no SYN-ACK, firewalld blocking
-- Live tcpdump analysis — reading full TCP handshake in real time
-Key insight: tcpdump shows nothing = local iptables OUTPUT drop.
-tcpdump shows SYN but no SYN-ACK = remote firewall dropping.
-Used 2 VMs: Ubuntu 22.04 client + CentOS Stream 9 server.
+### 2. Docker and Container Engineering
 
----
+Labs cover:
 
-### Day 4 — Bash Scripting
-Skills: bash, cron, curl (Slack alerts), color output
-Key labs:
-- health.sh — CPU/memory/disk/inode/service/log checks with color output
-- Slack alerting via webhook when thresholds breached
-- Cron scheduling — */5 * * * * every 5 minutes
-Key insight: A health script is only useful if it alerts someone.
-Threshold tuning matters — too sensitive = alert fatigue.
+- Container lifecycle, images, volumes and port mapping.
+- Docker bridge networking and service discovery.
+- Multi-container applications using Docker Compose.
+- Dockerfile optimisation and multi-stage builds.
+- Image layer caching and non-root container execution.
+- Trivy image vulnerability scanning.
+- Health checks, persistent PostgreSQL storage and service dependencies.
+- Troubleshooting application failures and container recovery.
 
----
+### 3. Git and CI/CD
 
-### Day 5 — Systemd Service Management
-Skills: systemctl, journalctl, unit files, cgroups
-Key labs:
-- Created Flask app as systemd service with auto-restart
-- StartLimitBurst — systemd stops restarting after N crashes
-- reset-failed workflow — how to recover a failed service
-- MemoryMax — cgroup memory limits, OOM kill behaviour
-Key insight: Restart=on-failure does NOT restart on clean exit (code 0).
-reset-failed is required before systemd will restart a failed service again.
+Practical work includes:
 
----
+- Git branching, commits, pull requests and merge workflows.
+- Rebase, cherry-pick, interactive rebase and `git bisect`.
+- GitHub Actions CI pipelines.
+- Automated testing and Docker image builds.
+- Matrix testing across Python versions.
+- Dependency caching and pipeline status gates.
+- Trivy security scanning and DockerHub image publishing.
+- Failure notifications through webhooks.
 
-### Day 6 — Docker Fundamentals
-Skills: docker run/exec/logs/stop/rm/rmi, volumes, Dockerfile
-Key labs:
-- Container ephemerality — data lost on rm, volumes survive
-- Port mapping — host:container direction, -p 8080:5000
-- Built custom image with Dockerfile (myapp:v1)
-- docker exec — getting inside a running container
-Key insight: Containers are ephemeral by design.
--v flag is the only way to persist data across container lifecycles.
+Related project: [sre-cicd-app](https://github.com/gdubey12/sre-cicd-app)
 
----
+### 4. Infrastructure as Code — Terraform Fundamentals
 
-### Day 7 — Docker Networking + Compose
-Skills: docker-compose, bridge networks, service discovery
-Key labs:
-- 3-container app: nginx(8888:80) → api(5000) → redis
-- Auto-created bridge network — service names as DNS hostnames
-- Break labs: 502 Bad Gateway vs Connection Refused — different causes
-Key insight: 502 = upstream reachable but sick.
-Connection Refused = nothing listening at that address/port.
+Exercises include:
 
----
+- Terraform workflow: init, plan, apply and destroy.
+- Variables, outputs and state management.
+- Resource dependencies and reusable modules.
+- State inspection and drift detection.
+- GitLab HTTP backend and remote state concepts.
 
-### Day 8 — Dockerfile Best Practices
-Skills: multi-stage builds, layer caching, security scanning
-Key labs:
-- Bad image (1.62GB) vs good image (210MB) — slim base, .dockerignore
-- Layer cache ordering — COPY requirements.txt before COPY . .
-- Non-root USER appuser — defence in depth
-- Trivy CVE scanning — pinned digests, CRITICAL exit code
-Key insight: Layer cache is invalidated top-to-bottom.
-requirements.txt copied first = pip install only re-runs when deps change.
+The exercises documented here include the Terraform local-file provider and remote-state practice; they should not be interpreted as production AWS provisioning experience.
 
----
+### 5. Kubernetes Administration and Troubleshooting
 
-### Day 9 — Git Workflows + CI/CD
-Skills: git, GitHub Actions, DockerHub, branch protection
-Key labs:
-- Full CI pipeline: test → build → security scan → DockerHub push
-- Break lab 1: failing test — pipeline failed at test stage correctly
-- Break lab 2: bad Dockerfile COPY — pipeline failed at build stage
-- Feature branch → PR → merge with CI gating
-- Rebase: linear history, no merge commit forks
-- Cherry-pick: single commit applied across branches
-- git bisect: found guilty commit in 2 steps across 8 releases
-- Interactive rebase: 3 WIP commits squashed into 1 clean commit
-- Pre-commit hook: blocked debug print() from being committed
-- PR protection rules: merge button blocked until all checks pass
-Key insight: CI on PRs means broken code can never reach main.
-git bisect turns a 64-commit investigation into 6 yes/no answers.
+Hands-on topics include:
 
-Repos:
-- github.com/gdubey12/sre-cicd-app
-- DockerHub: gaurav0524/sre-cicd-app
+- Pods, Deployments and Services.
+- ConfigMaps, Secrets and NodePort.
+- Rolling updates and rollout history.
+- Ingress and application routing.
+- Role-Based Access Control (RBAC).
+- Resource requests, limits, LimitRange and ResourceQuota.
+- Taints, tolerations and node affinity.
+- Kubernetes troubleshooting using Linux, container runtime and networking tools.
 
----
+### 6. Kubernetes Networking and Storage
 
-### Day 10 — Docker Compose Advanced
-Skills: healthchecks, volumes, postgres, compose overrides
-Key labs:
-- Health checks: redis-cli ping, pg_isready — condition: service_healthy
-- PostgreSQL volume persistence — data survived docker rm + recreate
-- DB crash simulation — kill 1, observed restart and health recovery
-- Dev vs prod override — docker-compose.override.yml vs docker-compose.prod.yml
-Key insight: depends_on without healthcheck only waits for container start.
-condition: service_healthy waits for the service inside to actually be ready.
+Practical exercises and projects include:
 
----
+- NetworkPolicy ingress and egress rules.
+- Namespace and workload traffic isolation.
+- StatefulSets and headless Services.
+- PersistentVolumes and PersistentVolumeClaims.
+- Per-pod storage using volumeClaimTemplates.
+- Stable pod identity and DNS.
+- Persistent data validation and recovery scenarios.
 
+## Selected Hands-on Projects
 
-### Day 11 — Full Multi-Service Compose App
-Skills: flask + postgres + redis + nginx, full stack compose
-Key labs:
-- Built complete production-like stack from scratch
-- Flask API writing to postgres (durability) and redis (speed)
-- nginx reverse proxy — single entry point, upstream group, timeout config
-- All services health checked — startup order enforced
-- Break lab: redis crash → 500 on /visit, partial write to postgres
-- Recovery: redis restarted, full stack restored automatically
-Key insight: redis is fast and approximate — resets on restart.
-Postgres is permanent truth — survived redis crash with full visit history.
-Partial write problem: postgres wrote, redis failed mid-transaction → data inconsistency.
+### Stateful Guestbook Application
 
+A multi-component Kubernetes application involving:
 
+- Nginx frontend Deployment and NodePort Service.
+- BusyBox backend StatefulSet.
+- Headless Service and persistent storage.
+- ConfigMaps and application configuration.
+- ServiceAccount and RBAC.
+- NetworkPolicies controlling application traffic.
 
-# Day 12 | CI/CD Advanced | Matrix builds (3.10/3.11/3.12), pip caching, tests-complete gate, failure notifications via webhook |
-## Overview
+**Documentation:** [Guestbook project notes](project1/NOTES.md)
 
-Extended the GitHub Actions CI/CD pipeline with production-grade features:
-matrix builds across Python versions, pip dependency caching, and automated
-failure notifications.
+**Manifests:** [Frontend](project1/frontend.yaml) · [Backend](project1/backend.yaml) · [ConfigMap](project1/configmap.yaml) · [Storage](project1/pv.yaml) · [RBAC](project1/rbac.yaml) · [NetworkPolicy](project1/netpol.yaml)
 
-## What Was Built
+### StatefulSet and Persistent Storage
 
-### Matrix Builds
-Tests run in parallel across Python 3.10, 3.11, and 3.12 simultaneously.
-Catches version-specific compatibility bugs before they reach production.
+A separate exercise demonstrating:
 
-### Pip Caching
-Dependencies cached using `actions/cache@v4`. Cache key is tied to the OS,
-Python version, and `requirements.txt` hash — cache invalidates automatically
-when dependencies change.
+- StatefulSet replicas and stable identities.
+- Per-pod PersistentVolumeClaims.
+- Headless Service DNS.
+- Pod recreation and data persistence.
+- PersistentVolume reclaim policy concepts.
 
-### tests-complete Summary Job
-A lightweight gate job that waits for all matrix versions to pass before
-reporting a single stable status check. Required for branch protection rules
-to work correctly with matrix pipelines.
+**Documentation:** [StatefulSet lab notes](sts/NOTES.md)
 
-### Failure Notifications
-`notify-on-failure` job fires automatically when any critical job fails.
-Sends a JSON payload with repo, branch, commit SHA, and direct run URL
-to a webhook endpoint (webhook.site for testing; Slack/PagerDuty in production).
+**Manifests:** [StatefulSet](sts/sts-web.yaml) · [PersistentVolumes](sts/pvs.yaml) · [PVC](sts/pvc0.yaml)
 
-## Pipeline Flow
+### Kubernetes NetworkPolicy Exercises
 
-```
-Matrix: Run Tests (3.10 | 3.11 | 3.12)
-    ├──→ tests-complete          ← PR gate
-    └──→ Build Docker Image
-              └──→ Security Scan (Trivy, CRITICAL CVEs)
-                        └──→ Push to DockerHub (main only)
+Hands-on exercises covering Kubernetes network traffic control.
 
-[any failure] → Notify on Failure → webhook alert
-```
+**Documentation:** [NetworkPolicy notes](networkpolicies/NOTES.md)
 
-## Key Files
+### Linux Monitoring Fundamentals
 
-| File | Purpose |
+Exercises covering logs, metrics, Docker monitoring, networking observations and structured logging concepts.
+
+**Documentation:** [Day 13 notes](day13/NOTES.md) · [Monitoring basics runbook](day13/runbooks/monitoring-basics.md)
+
+### Git and CI/CD Automation
+
+Hands-on Git and GitHub Actions exercises covering:
+
+- Feature branches, pull requests and merge workflows.
+- Rebase, cherry-pick, git bisect and interactive rebase.
+- CI pipeline stages: test, Docker build, security scan and image push.
+- Troubleshooting failed test and build stages.
+- Pre-commit hooks and GitHub branch protection rules.
+- Automated Docker image publishing to DockerHub.
+
+**Documentation:** [Day 9 notes](day9/NOTES.md) · [Git and CI/CD runbook](day9/runbooks/git-cicd.md)
+
+**Application repository:** [sre-cicd-app](https://github.com/gdubey12/sre-cicd-app)
+
+## Tools and Technologies
+
+| Area | Tools |
 |---|---|
-| `.github/workflows/ci.yml` | Full pipeline definition |
-| `Dockerfile` | Production image — python:3.11-slim |
-| `test_app.py` | pytest tests — verified on 3 Python versions |
-| `requirements.txt` | pip cache key source |
+| Operating Systems | Linux, Ubuntu, RHEL-based distributions |
+| Linux Troubleshooting | ps, top, lsof, strace, journalctl, systemd |
+| Networking | curl, ss, nc, tcpdump, iptables, firewalld |
+| Scripting | Bash, Python fundamentals |
+| Containers | Docker, Docker Compose, Trivy |
+| Version Control | Git, GitHub |
+| CI/CD | GitHub Actions |
+| Infrastructure as Code | Terraform fundamentals |
+| Container Orchestration | Kubernetes |
+| Kubernetes Networking | Services, Ingress, NetworkPolicy |
+| Kubernetes Storage | PV, PVC, StatefulSet |
 
-## Break Labs Completed
+## Repository Structure
 
-| Lab | What broke | What fired |
-|---|---|---|
-| Intentional test failure | All 3 matrix jobs failed | notify-on-failure → webhook.site |
+The original day-based folders are retained to preserve the progression of the learning exercises.
 
-## DockerHub
+Additional folders contain projects, reference material, networking exercises and StatefulSet labs.
 
-Image: `gaurav0524/sre-cicd-app`
-- Tagged with commit SHA for traceability
-- `latest` tag updated on every main push
-- Verified with `docker pull` + `curl /health` on local VM
+## Important Context
 
-## Lessons Learned
+This is a personal hands-on learning repository. The labs and projects are separate from professional production responsibilities and are intended to demonstrate practical learning, troubleshooting methodology and technical development.
 
-- Matrix builds change job names — always use a summary job as PR gate
-- Cache step must come BEFORE install dependencies to be useful
-- `if: failure()` is edge-triggered — only fires when something actually broke
-- `github.sha` tagging gives full rollback capability; `latest` does not
-
-### Day 13 — Monitoring Basics
-- journalctl: system log filtering by service, time window, boot boundary
-- docker compose logs: follow mode, time window filtering
-- docker stats: live CPU/MEM/NET — mapped to counter vs gauge metric types
-- Docker bridge networking: br-* interfaces, veth pairs, gateway IP
-- Runbook: [monitoring-basics.md](labs/day13/runbooks/monitoring-basics.md)
-
-
-
-
-# README.md — Day 15 Addition
-
-Add the following entry under your Week 3 section (create the section if it doesn't exist yet):
-
----
-
-## Week 3 — Infrastructure as Code + Kubernetes (Days 15–21)
-
-### Day 15 — Terraform Basics ✅
-
-**Topics covered:**
-- Terraform install and provider configuration
-- Core workflow: `init` → `plan` → `apply` → `destroy`
-- Variables (`variables.tf`) and value overrides (`terraform.tfvars`)
-- Outputs (`outputs.tf`) — surfacing resource attributes post-apply
-- State file (`terraform.tfstate`) — Terraform's memory and drift detection
-- Variable precedence: default → tfvars → env var → `-var` flag
-
-**Lab:**
-- Provisioned a `local_file` resource using the HashiCorp local provider
-- Demonstrated config drift detection by manually editing a managed file
-- Used `terraform output` to query resource attributes
-- Full destroy and state cleanup
-
-**Key insight:**
-> Terraform detects drift by comparing the state file against real infrastructure on every `plan`/`apply`. If someone changes infrastructure outside of Terraform, the next plan exposes it. The code is the source of truth, not the server.
-
-**Files:**
-- `labs/day15-terraform/main.tf`
-- `labs/day15-terraform/variables.tf`
-- `labs/day15-terraform/outputs.tf`
-- `labs/day15-terraform/terraform.tfvars`
-
-**Runbook:** `reference/day15-terraform-runbook.md`
-
----
-
-## Upcoming
-
-| Day | Topic |
-|---|---|
-| 16 | Terraform — modules and multiple resources |
-| 17 | Terraform — remote state |
-| 18–21 | Kubernetes intro |
-| 50+ | Terraform + LocalStack (simulated AWS) |
-
-
-
-# README.md — Day 16 Addition
-
-Add the following entry under Week 3:
-
----
-
-### Day 16 — Terraform Modules & Multiple Resources ✅
-
-**Topics covered:**
-- Multiple resources with implicit and explicit dependencies (`depends_on`)
-- Terraform dependency graph — parallel vs sequential resource creation
-- Resource interpolation — referencing attributes across resources
-- Modules — reusable resource templates with inputs and outputs
-- Module state addressing: `module.<name>.<type>.<name>`
-- Passing module outputs to other modules
-- When `terraform init` is required (any new module block)
-
-**Lab:**
-- Created 3 resources with dependency chain (app → db → summary)
-- Built a reusable `config-file` module with variables and outputs
-- Called the same module 3 times with different inputs (app, db, cache configs)
-- Demonstrated module output flow — individual outputs collected into root output map
-- Learned refactoring risk: moving resources into modules changes state address
-
-**Key insight:**
-> A module is just a folder with `.tf` files. Modules protect you from changes in the logic — update the module once, all callers benefit. Module outputs wire infrastructure together: an app module can receive a database host from a database module's output automatically, with no hardcoding.
-
-**Files:**
-- `labs/day16-terraform/main.tf`
-- `labs/day16-terraform/modules/config-file/main.tf`
-- `labs/day16-terraform/config/app.conf`
-- `labs/day16-terraform/config/db.conf`
-- `labs/day16-terraform/config/cache.conf`
-
-**Runbook:** `reference/day16-terraform-runbook.md`
-
----
-
-
-
-## Upcoming
-
-| Day | Topic |
-|---|---|
-| 17 | Terraform — remote state |
-| 18–21 | Kubernetes intro |
-| 50+ | Terraform + LocalStack + AWS free tier |
----
-
-### Day 17 — Terraform Remote State ✅
-
-**Topics covered:**
-- State file internals: version, serial, lineage, resource records
-- Why local state is dangerous: no locking, no sharing, single point of failure
-- GitLab HTTP backend — remote state without AWS
-- State locking: acquired before plan/apply, released after
-- Drift detection: SHA1 hash mismatch triggers + create on next plan
-- terraform state list / show — reading state without raw JSON
-
-**Lab:**
-- Inspected Day 16 state file — read serial, lineage, resource hashes
-- Created GitLab project + personal access token for backend auth
-- Configured HTTP backend in backend.tf — credentials passed via init flags
-- Verified state stored in GitLab: Operate → Terraform states → day17-state
-- Confirmed no terraform.tfstate file locally after apply
-- Simulated drift: manually edited managed file, plan detected mismatch
-- Restored correct state with apply
-
-**Key insight:**
-> Remote state is not optional in team environments. Serial prevents concurrent conflicts. Locking prevents simultaneous applies. GitLab is production-grade remote state without any cloud cost — the same pattern used before AWS S3 is introduced.
-
-**Files:**
-- `labs/day17-terraform/backend.tf`
-- `labs/day17-terraform/main.tf`
-- `labs/day17-terraform/runbook.md`
-
-
-# Day 19 — Pods, Deployments, Services
-
-## What was covered
-First hands-on Kubernetes session. Moved from concepts to running real workloads.
-
-## Files
-| File | Description |
-|---|---|
-| `pod.yaml` | Standalone nginx pod |
-| `deployment.yaml` | 3-replica nginx Deployment |
-| `service.yaml` | ClusterIP Service routing to Deployment pods |
-| `NOTES.md` | Concepts and commands learned |
-| `RUNBOOK.md` | Common operational scenarios and fixes |
-
-## Key outcomes
-- Deployed a standalone Pod and exec'd into it
-- Observed reconciliation loop live — deleted pod replaced in 7 seconds
-- Created a Service and verified pod-to-pod routing via DNS name
-- Scaled Deployment up to 5 and down to 2
-- Checked rollout status and history
-
-## Commands reference
-```bash
-kubectl get pods -w                          # watch pods in real time
-kubectl describe pod <name>                  # full detail + events
-kubectl exec -it <pod> -- sh                 # shell into pod
-kubectl scale deployment <name> --replicas=N # scale
-kubectl rollout status deployment <name>     # verify rollout
-kubectl rollout history deployment <name>    # revision history
-```
-
-## Day 20 — ConfigMaps, Secrets, NodePort, Rolling Updates
-- ConfigMap and Secret injection as env vars
-- NodePort service type and port-forward for local access
-- Rolling update — zero downtime deployment observed live
-- Rollback using revision history
-
-## Tools Used
-Linux: ps, top, lsof, strace, df, du, ss, tcpdump, nc, curl
-Networking: iptables, firewalld, nmap
-Scripting: bash, python3
-Docker: docker, docker compose, Dockerfile, trivy
-CI/CD: GitHub Actions, DockerHub
-Git: rebase, cherry-pick, bisect, interactive rebase, pre-commit hooks
-
-## Environment
-VM 1: Ubuntu 22.04 LTS — 192.168.31.21
-VM 2: CentOS Stream 9  — 192.168.31.158
-Host: Windows 11, Ryzen 5 5500U, 16GB RAM
-
-## Background
-14+ years in product support transitioning to SRE engineering.
-Every runbook written from real hands-on investigation, not copied from docs.
+Professional experience and responsibilities are described separately in my resume and LinkedIn profile.

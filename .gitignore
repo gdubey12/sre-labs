@@ -4,3 +4,8 @@ terraform.tfstate.backup
 day12/sre-cicd-app
 *.key
 *.tgz
+
+# Local repository inspection files
+all-lab-documentation.txt
+documentation-files.txt
+repository-structure.txt
